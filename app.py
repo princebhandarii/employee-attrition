@@ -103,13 +103,6 @@ if st.button("🔍 Predict Attrition"):
     # =========================================================
     pred = model_p.predict(input_df)[0]
 
-    try:
-        proba = model_p.predict_proba(input_df)[0]
-        prob_no = round(proba[0]*100,2)
-        prob_yes = round(proba[1]*100,2)
-    except:
-        prob_no, prob_yes = None, None
-
     # =========================================================
     # OUTPUT
     # =========================================================
@@ -119,7 +112,3 @@ if st.button("🔍 Predict Attrition"):
         st.error("❌ Employee likely to LEAVE")
     else:
         st.success("✅ Employee likely to STAY")
-
-    if prob_no is not None:
-        st.write(f"🟢 Stay Probability: {prob_no}%")
-        st.write(f"🔴 Leave Probability: {prob_yes}%")
