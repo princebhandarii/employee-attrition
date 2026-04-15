@@ -24,24 +24,31 @@ st.title("💼 Employee Attrition Prediction")
 # =========================================================
 # INPUT UI
 # =========================================================
-
 st.sidebar.header("Enter Employee Details")
 
 # Numeric Inputs
 YearsSinceLastPromotion = st.sidebar.number_input("Years Since Last Promotion", 0, 20, 3)
-JobSatisfaction = st.sidebar.selectbox("Job Satisfaction", [1,2,3,4])
-JobLevel = st.sidebar.selectbox("Job Level", [1,2,3,4,5])
+JobSatisfaction = st.sidebar.selectbox("Job Satisfaction", [1, 2, 3, 4])
+JobLevel = st.sidebar.selectbox("Job Level", [1, 2, 3, 4, 5])
 YearsInCurrentRole = st.sidebar.number_input("Years In Current Role", 0, 40, 4)
-WorkLifeBalance = st.sidebar.selectbox("Work Life Balance", [1,2,3,4])
-JobInvolvement = st.sidebar.selectbox("Job Involvement", [1,2,3,4])
-RelationshipSatisfaction = st.sidebar.selectbox("Relationship Satisfaction", [1,2,3,4])
+WorkLifeBalance = st.sidebar.selectbox("Work Life Balance", [1, 2, 3, 4])
+JobInvolvement = st.sidebar.selectbox("Job Involvement", [1, 2, 3, 4])
+RelationshipSatisfaction = st.sidebar.selectbox("Relationship Satisfaction", [1, 2, 3, 4])
 YearsAtCompany = st.sidebar.number_input("Years At Company", 0, 40, 5)
 MonthlyIncome = st.sidebar.number_input("Monthly Income", 1000, 50000, 5000)
-TrainingTimesLastYear = st.sidebar.selectbox("Training Times Last Year",0,100,0)
-EnvironmentSatisfaction = st.sidebar.selectbox("Environment Satisfaction", [1,2,3,4])
+
+# ✅ FIXED HERE (use slider instead of wrong selectbox)
+TrainingTimesLastYear = st.sidebar.slider(
+    "Training Times Last Year",
+    min_value=0,
+    max_value=100,
+    value=0
+)
+
+EnvironmentSatisfaction = st.sidebar.selectbox("Environment Satisfaction", [1, 2, 3, 4])
 Age = st.sidebar.number_input("Age", 18, 60, 30)
 HourlyRate = st.sidebar.number_input("Hourly Rate", 10, 150, 60)
-PerformanceRating = st.sidebar.selectbox("Performance Rating", [1,2,3,4])
+PerformanceRating = st.sidebar.selectbox("Performance Rating", [1, 2, 3, 4])
 DistanceFromHome = st.sidebar.number_input("Distance From Home", 0, 100, 10)
 NumCompaniesWorked = st.sidebar.number_input("Num Companies Worked", 0, 10, 2)
 
@@ -55,7 +62,6 @@ OverTime = st.sidebar.selectbox("Over Time", le_map['OverTime'].classes_)
 # =========================================================
 # PREDICT BUTTON
 # =========================================================
-
 if st.button("🔍 Predict Attrition"):
 
     employee = {
